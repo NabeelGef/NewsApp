@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:newstask/data/model/news_model.dart';
 import 'package:newstask/views/HomeScreen/widgets/make_custome-news.dart';
 
 import '../../consts/texts.dart';
@@ -8,21 +9,17 @@ class HomeScreenController extends GetxController{
   TextEditingController textform1 = TextEditingController();
   TextEditingController textform2 = TextEditingController();
 
-  List<String> list1= [
-    "Car","Cat","Cup","Coffee"
-  ];
-  List<String> list2=[
-    "Ball","Bee","Bind","Bro",
-  ];
+  RxList<Article>? list1= <Article>[].obs;
+  RxList<Article>? list2=<Article>[].obs;
 
 
   Widget GenerateNews(index){
-    if(index<list1.length){
-      return MakeCustomeNews(data: list1[index]);
+    if(index<list1!.length){
+      return MakeCustomeNews(data: list1![index]);
     }
     else {
-      index = index - list1.length;
-      return MakeCustomeNews(data: list2[index]);
+      index = index - list1!.length;
+      return MakeCustomeNews(data: list2![index]);
     }
   }
 
